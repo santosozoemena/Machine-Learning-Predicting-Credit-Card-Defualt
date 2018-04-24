@@ -1,3 +1,4 @@
 # cc_project3
 Probability of Credit Card Default using Machine Learning 
-![alt text](https://gph.is/1OwJIbT"Credit Cards")
+<br><br>
+![ccgif](https://media.giphy.com/media/tcVr2lf1Z0Ypi/giphy.gif)
