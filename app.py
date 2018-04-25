@@ -1,4 +1,4 @@
-#importing dependencies
+#Importing dependencies
 
 import numpy as np
 import pandas as pd
@@ -11,11 +11,22 @@ from flask import (Flask,jsonify,render_template,jsonify,request,redirect)
 
 ##IMPORTING MODELS
 
-#initializing app
+#Initializing app
 app=Flask(__name__)
 
 #Creating database
 from flask_sqlalchemy import SQLAlchemy 
 engine = create_engine('sqlite:///creditcarddefault.sqlite', echo=True)
 Base = declarative_base()
+
+#Creating session
+session=engine(Session)
+
+class creditDefault(Base):
+	__tablename__='credit_default'
+
+	id=Column(Integer,primary_key='True')
+	
+
+
 
