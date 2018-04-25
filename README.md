@@ -15,6 +15,7 @@ Our machine learning project produced some predictive analytic techniques such a
   <li> Determining probability of user liability </li>
   <li> Creating an interactive UI that will take users input </li>
   <li> To determine if a neural network vs logistic regression is the better model for either </li>
+</ul>
 
 
-![ccgif](https://media.giphy.com/media/tcVr2lf1Z0Ypi/giphy.gif)
+->![ccgif](https://media.giphy.com/media/tcVr2lf1Z0Ypi/giphy.gif)<-
