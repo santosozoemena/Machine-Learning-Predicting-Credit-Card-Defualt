@@ -232,3 +232,10 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 dl{ font-size:80%}
 h5{text-align: center}
 #flask {filter: invert() }
+img.image-cropper {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
