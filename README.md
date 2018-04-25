@@ -3,6 +3,7 @@
 
 ![GitHub Logo](/credit.jpg)
 
+<h2>Overview<h2>
 <p>In our machine learning project we produced some predictive analytic techniques such as credit defaulting models, which can often be employed by banks and lending institutions to understand and manage the risk of their loans and lending portfolios.
 </p>
 <br>
