@@ -18,14 +18,21 @@ app=Flask(__name__)
 from flask_sqlalchemy import SQLAlchemy 
 engine = create_engine('sqlite:///creditcarddefault.sqlite', echo=True)
 Base = declarative_base()
+db=SQLAlchemy(app)
+
 
 #Creating session
 session=engine(Session)
 
 class creditDefault(Base):
-	__tablename__='credit_default'
+	__tablename__ = 'credit_default'
 
-	id=Column(Integer,primary_key='True')
+	id = db.Column(db.Integer,primary_key='True')
+	limit_bal = db.Column(db.Integer)
+	sex = db.Column(db.Integer)
+	education = db.Column(db.Integer)
+	marriage = db.Column(db.Integer)
+	age = db.Column(db.Integer)
 	
 
 
