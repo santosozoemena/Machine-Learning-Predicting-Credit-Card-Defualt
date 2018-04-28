@@ -12,6 +12,10 @@ from flask import Flask, render_template, url_for, request, redirect, flash, jso
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+import pickle
+
+logreg=pickle.load(open('logistic_regression_model.sav',rb))
+
 engine = create_engine('sqlite:///creditcarddefault.sqlite', echo=True)
 
 
@@ -59,44 +63,44 @@ Base.metadata.create_all(engine)
 def home():
 	return render_template("index.html")
 
-@app.route("/submit",methods=["GET","POST"])
-def submit():
-	if request.method=="POST":
-		newCreditObj = CreditDefault(
-			gender = request.form["gender"],
-			education = request.form["education"],
-			marriage = request.form["marriage"],
-			age =  request.form["age"],
-			credit = request.form["credit"],
-			credit_bill = request.form["credit_bill"],
-			bill_payment = request.form["bill_payment"],
-			billing_hist = request.form["credit_score"])
-		session.add(newCreditObj)
-		session.commit()
-		return redirect('http://localhost:5000/',code=302)
-		# flash('New Credit obj created')
+# @app.route("/submit",methods=["POST"])
+# def submit():
+# 	if request.method=="POST":
+# 		newCreditObj = CreditDefault(
+# 			gender = request.form["gender"],
+# 			education = request.form["education"],
+# 			marriage = request.form["marriage"],
+# 			age =  request.form["age"],
+# 			credit = request.form["credit"],
+# 			credit_bill = request.form["credit_bill"],
+# 			bill_payment = request.form["bill_payment"],
+# 			billing_hist = request.form["credit_score"])
+# 		session.add(newCreditObj)
+# 		session.commit()
+# 		return redirect('http://localhost:5000/',code=302)
+# # 		# flash('New Credit obj created')
 
-		# 	if billing_hist == "I do not carry a balance"
-		# 		billing_hist = -2
-		# 	elif billing_hist == "Always On Time"
-		# 		billing_hist = -1
-		# 	elif billing_hist == "30+ day past due"
-		# 		billing_hist = 0
-		# 	elif billing_hist == "60+ day past due"
-		# 		billing_hist = 1
-		# 	elif billing_hist == "90+ day past due"
-		# 		billing_hist = 2
-		# 	else billing_hist == "120+ day past due"
-		# 		billing_hist = 3
+# # 		# 	if billing_hist == "I do not carry a balance"
+# # 		# 		billing_hist = -2
+# # 		# 	elif billing_hist == "Always On Time"
+# # 		# 		billing_hist = -1
+# # 		# 	elif billing_hist == "30+ day past due"
+# # 		# 		billing_hist = 0
+# # 		# 	elif billing_hist == "60+ day past due"
+# # 		# 		billing_hist = 1
+# # 		# 	elif billing_hist == "90+ day past due"
+# # 		# 		billing_hist = 2
+# # 		# 	else billing_hist == "120+ day past due"
+# # 		# 		billing_hist = 3
 
-		# credit = creditDefault(age=age,gender=sex,education=education,marriage=marriage,credit_avail=credit_avail,last_mo_credit_bill=last_mo_credit_bill,last_mo_credit_payment=last_mo_credit_payment)
-		# session.add(credit)
-		# session.commit()
-		# flash("thanks for your entry")
-	return render_template("index_form.html")
+# # 		# credit = creditDefault(age=age,gender=sex,education=education,marriage=marriage,credit_avail=credit_avail,last_mo_credit_bill=last_mo_credit_bill,last_mo_credit_payment=last_mo_credit_payment)
+# # 		# session.add(credit)
+# # 		# session.commit()
+# # 		# flash("thanks for your entry")
+# 	return redirect("index.html")
 
-@app.route("/api/query")
-def query():
+# @app.route("/api/query")
+# def query():
 
 
 
@@ -116,10 +120,21 @@ def query():
 #     "type": "bar"
 # }
 
+@app.route("/prediction",methods=["POST"])
+def submit():
+	if request.method=="POST":
+			gender = request.form["gender"],
+			education = request.form["education"],
+			marriage = request.form["marriage"],
+			age =  request.form["age"],
+			credit = request.form["credit"],
+			credit_bill = request.form["credit_bill"],
+			bill_payment = request.form["bill_payment"],
+			billing_hist = request.form["credit_score"]
 
 
-# 		#after they hit submit, i want a flash() to happen? and then to return the classfication
-# 		#on the screen. 
+
+
 
 if __name__ == "__main__":
 	app.run(debug=True)

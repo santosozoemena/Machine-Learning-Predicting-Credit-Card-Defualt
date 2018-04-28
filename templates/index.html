@@ -97,7 +97,7 @@ body, html {
   
     <div class="w3-row w3-padding-32 w3-section">
         <p>Enter applicant information for all fields</p>
-        <form action="/action_page.php" target="_blank">
+         <form method='POST' action='/submit' role='form' name='feature_form'>
           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
             <div class="w3-half">
               <h5>Age</h5>
@@ -105,8 +105,8 @@ body, html {
             </div>
             <div class="w3-half">
               <H5>Gender</h5>
-              <input class="w3-input w3-border" type="radio" value ="Male" required name="Gender">Male
-              <input class="w3-input w3-border" type="radio" value ="Female" required name="Gender"> Female
+              <input class="w3-input w3-border" type="radio" value ="Male" required name="gender">Male
+              <input class="w3-input w3-border" type="radio" value ="Female" required name="gender"> Female
             </div>
           </div>
           <hr>
@@ -129,30 +129,30 @@ body, html {
           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
             <div class="w3-half">
               <h5>Billing History in the Last 6 Months</h5>
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" required name="credit score">I do not carry a balance
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" required name="credit score">Always On Time
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" required name="credit score">30+ day past due
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" required name="credit score">60+ day past due
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" required name="credit score">90+ day past due
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" required name="credit score">120+ day past due
+              <input class="w3-input w3-border" type="radio" placeholder="credit score" name="credit_score">I do not carry a balance
+              <input class="w3-input w3-border" type="radio" placeholder="credit score" name="credit_score">Always On Time
+              <input class="w3-input w3-border" type="radio" placeholder="credit score" name="credit_score">30+ day past due
+              <input class="w3-input w3-border" type="radio" placeholder="credit score" name="credit_score">60+ day past due
+              <input class="w3-input w3-border" type="radio" placeholder="credit score" name="credit_score">90+ day past due
+              <input class="w3-input w3-border" type="radio" placeholder="credit score" name="credit_score">120+ day past due
             </div>
             <div class="w3-half">
               <h5>Current Credit Avaiable </h5>
-              <input class="w3-input w3-border" type="number" placeholder="(exclude $)" required name="Credit">
+              <input class="w3-input w3-border" type="number" placeholder="(exclude $)" name="credit">
             </div>
           </div>
           <hr>
           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
               <div class="w3-half">
                 <h5>Last Month Credit Bill </h5>
-                <input class="w3-input w3-border" type="number" placeholder="(exclude $)" required name="Credit Bill">
+                <input class="w3-input w3-border" type="number" placeholder="(exclude $)" name="credit_bill">
               </div>
               <div class="w3-half">
                 <h5>Last Month Credit Bill Payment </h5>
-                <input class="w3-input w3-border" type="number" placeholder="(exclude $)" required name="Bill Payment">
+                <input class="w3-input w3-border" type="number" placeholder="(exclude $)" name="bill_payment">
               </div>
             </div>
-          <a href="./calculator"><button class="w3-button w3-black w3-right w3-section" type="submit">
+          <a href="/submit"><button class="w3-button w3-black w3-right w3-section" type="submit">
               <i class="fa fa-calculator"></i> Submit
             </button>
             </a>
@@ -160,8 +160,7 @@ body, html {
       </div>
       <hr>
       <h5>Results</h5>
-      <h3>{{app.Category}}</h3>
-      <p>{{app.probability}}</p>
+
     </div>
   </div>
 
