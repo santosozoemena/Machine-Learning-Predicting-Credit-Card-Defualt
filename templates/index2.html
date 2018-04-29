@@ -3,7 +3,7 @@
 <title>Credit Default Risk </title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="./static/style.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
@@ -84,57 +84,59 @@ body, html {
     <!-- <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Everyone <span class="w3-hide-small">Hates a Hard Pull
     <br><span>Everyone </span><br> so check this out before your run/ruin it</span></span> -->
     <h4 class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-      Everyone Hates a "Hard Pull" <br> 
+      Everyone Hates a "Hard Pull" <br>
     </h4>
-    <p class="w3-center"><em> really, everyone.<br> so check this out before you run/ruin it</em></p> 
+    <p class="w3-center"><em> really, everyone.<br> so check this out before you run/ruin it</em></p>
   </div>
 </div>
-  
+
   <!-- Container (Contact Section) -->
   <div class="w3-content w3-container w3-padding-64" id="contact">
     <h3 class="w3-center">DEFAULT PREDICTOR</h3>
     <p class="w3-center"><em>It isn't magic, it is machine learning! Read more below.</em></p>
-  
+
     <div class="w3-row w3-padding-32 w3-section">
         <p>Enter applicant information for all fields</p>
-        <form action="/action_page.php" target="_blank">
+        <form  method='POST'>
           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
             <div class="w3-half">
               <h5>Age</h5>
-              <input class="w3-input w3-border" type="text" placeholder="(Please use whole numbers)" required name="Age">
+              <input class="w3-input w3-border" type="text" placeholder="(Please use whole numbers)" input name="Age">
             </div>
             <div class="w3-half">
               <H5>Gender</h5>
-              <input class="w3-input w3-border" type="radio" value ="Male" required name="Gender">Male
-              <input class="w3-input w3-border" type="radio" value ="Female" required name="Gender"> Female
+              <input class="w3-input w3-border" type="radio" value="1" required name="Gender">Male
+              <input class="w3-input w3-border" type="radio" value="2" required name="Gender"> Female
+              <!-- <input class="w3-input w3-border" type="radio" name="marriage" value="1"> Single<br> -->
+
             </div>
           </div>
           <hr>
           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
               <div class="w3-half">
                 <h5>Education Level</h5>
-                <input class="w3-input w3-border" type="radio" name="education" value="High School"> High School<br>
-                <input class="w3-input w3-border" type="radio" name="education" value="Undergraduate"> Undergraduate<br>
-                <input class="w3-input w3-border" type="radio" name="education" value="Graduate"> Graduate<br>
-                <input class="w3-input w3-border" type="radio" name="education" value="Other"> Other<br>
+                <input class="w3-input w3-border" type="radio" name="education" value="1"> High School<br>
+                <input class="w3-input w3-border" type="radio" name="education" value="2"> Undergraduate<br>
+                <input class="w3-input w3-border" type="radio" name="education" value="3"> Graduate<br>
+                <input class="w3-input w3-border" type="radio" name="education" value="1"> Other<br>
               </div>
               <div class="w3-half">
                   <h5>Marital Status</h5>
-                  <input class="w3-input w3-border" type="radio" name="marriage" value="single"> Single<br>
-                  <input class="w3-input w3-border" type="radio" name="marriage" value="married"> Married<br>
-                  <input class="w3-input w3-border" type="radio" name="marriage" value="Other"> Other<br>
+                  <input class="w3-input w3-border" type="radio" name="marriage" value="1"> Single<br>
+                  <input class="w3-input w3-border" type="radio" name="marriage" value="2"> Married<br>
+                  <input class="w3-input w3-border" type="radio" name="marriage" value="1"> Other<br>
                 </div>
             </div>
             <hr>
           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
             <div class="w3-half">
               <h5>Billing History in the Last 6 Months</h5>
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" required name="-2">I do not carry a balance
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" required name="-1">Always On Time
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" required name="30">30+ day past due
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" required name="60">60+ day past due
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" required name="90">90+ day past due
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" required name="120">120+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= 'I do not carry a balance'>I do not carry a balance
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '6'>Always On Time
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='30+ day past due'>30+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='60+ day past due'>60+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '90+ day past due'>90+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='120+ day past due'>120+ day past due
             </div>
             <div class="w3-half">
               <h5>Current Credit Avaiable </h5>
@@ -144,7 +146,7 @@ body, html {
           <hr>
           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
               <div class="w3-half">
-                <h5>Last Month Credit Bill </h5>
+                <h5>Average Bill 6 months </h5>
                 <input class="w3-input w3-border" type="number" placeholder="(exclude $)" required name="Credit Bill">
               </div>
               <div class="w3-half">
@@ -152,7 +154,7 @@ body, html {
                 <input class="w3-input w3-border" type="number" placeholder="(exclude $)" required name="Bill Payment">
               </div>
             </div>
-          <a href="./calculator"><button class="w3-button w3-black w3-right w3-section" type="submit">
+          <button class="w3-button w3-black w3-right w3-section" type="submit">
               <i class="fa fa-calculator"></i> Submit
             </button>
             </a>
@@ -160,8 +162,12 @@ body, html {
       </div>
       <hr>
       <h5>Results</h5>
-      <h3>{{app.Category}}</h3>
-      <p>{{app.probability}}</p>
+      {% if prediction[0] == 1 %}
+      <h3>{{ 'DEFAULT' }}!</h3>
+      {% else %}
+      <h3>{{ "No Default" }}!</h3>
+      {% endif %}
+
     </div>
   </div>
 
@@ -174,11 +180,11 @@ body, html {
 <div class="w3-content w3-container w3-padding-64" >
   <!-- <h3 class="w3-center">Project Documentation</h3> -->
   <!-- <p class="w3-center"><em>Why and How</em></p> -->
-  <p>The financial pressure on the millennial generation is ever increasing. Credit scores are a valuable indicator that everyone is trying to protect. With every ‘hard pull’ 
-    the credit bureau is adding a negative weight to consumer’s credit scores. It is a vicious circle, you must apply for credit to get credit and if you are not approved, you impacted your score negatively and you still do not have credit.    
+  <p>The financial pressure on the millennial generation is ever increasing. Credit scores are a valuable indicator that everyone is trying to protect. With every ‘hard pull’
+    the credit bureau is adding a negative weight to consumer’s credit scores. It is a vicious circle, you must apply for credit to get credit and if you are not approved, you impacted your score negatively and you still do not have credit.
     </p>
-    <p>We have created an application using supervised machine learning to train a model with credit default data to determine the classification (“default” vs “non-default”) of the user’s liability. By taking a user input that can be passed 
-      in as features in the model, we can predict the user’s likelihood to default, which can be equated to not qualifying for line of credit before a ‘hard pull’ has been completed. 
+    <p>We have created an application using supervised machine learning to train a model with credit default data to determine the classification (“default” vs “non-default”) of the user’s liability. By taking a user input that can be passed
+      in as features in the model, we can predict the user’s likelihood to default, which can be equated to not qualifying for line of credit before a ‘hard pull’ has been completed.
     </p>
     <div class="w3-row">
       <div class="w3-col m12 w3-left w3-padding-large">
@@ -214,20 +220,20 @@ body, html {
                           (years)
                       </dd>
                     </dt>
-                    <li><dt>pay_1 - pay_6 : History of past payment. Past monthly payment records 
+                    <li><dt>pay_1 - pay_6 : History of past payment. Past monthly payment records
                         From April to September, 2005 as follows:</li>
                       <dd>
-                          pay_1 = the repayment status in September, 2005<br> 
-                          ...<br> 
+                          pay_1 = the repayment status in September, 2005<br>
+                          ...<br>
                           pay_6 = the repayment status in April, 2005
                       </dd>
                     </dt>
                     <dt>The measurement scale for the repayment status is:
                       <dd>
-                          -1 = pay duly; <br> 
-                          1 = payment delay for one month <br> 
-                          2 = payment delay for two months<br> 
-                          ...<br> 
+                          -1 = pay duly; <br>
+                          1 = payment delay for one month <br>
+                          2 = payment delay for two months<br>
+                          ...<br>
                           9 = payment delay for nine months and above
                       </dd>
                     </dt>
@@ -241,11 +247,11 @@ body, html {
                               Amount of previous payment (NT dollar)
                           </dd>
                         </dt>
-                
+
           </ul>
         </dl>
-          <br>  
-        <p> Below we have visualized the data to understand the attributes and to make decisions on how to process the data</p> 
+          <br>
+        <p> Below we have visualized the data to understand the attributes and to make decisions on how to process the data</p>
           <hr>
       </div>
     </div>
@@ -255,14 +261,14 @@ body, html {
     <div class="w3-row">
       <div class="w3-col m12 w3-left w3-padding-large">
         <h5><b><i class="	fa fa-bar-chart w3-margin-right"></i>Feature Engineering</b></h5><br>
-        <p>To properly utilize this dataset, we had to create time independent variables from the fields that are measured over times. 
-          This would allow us to gather a user input from our application and apply that to our model. Here are the aggregations and 
-          changes that we made to the dataset before modeling: 
+        <p>To properly utilize this dataset, we had to create time independent variables from the fields that are measured over times.
+          This would allow us to gather a user input from our application and apply that to our model. Here are the aggregations and
+          changes that we made to the dataset before modeling:
           </p>
           <br>
           <ul>
             <li> Removed ID</li>
-            <li>Created Pay ‘Score’ Average (pay_score_avg), calculated the mean of individual accounts 6 month pay ‘score’</li> 
+            <li>Created Pay ‘Score’ Average (pay_score_avg), calculated the mean of individual accounts 6 month pay ‘score’</li>
             <li>Created Average Payment Amount (pay_amt_avg)and Average Bill Amount(bill_amt_avg) using the same methodology</li>
             <li>Created Credit Utilization, calculated by (bill_amt0/limit_bal)</li>
             <li>Created Payment to Bill Percentage, calculated by (avg_pay_amt/avg_bill_amt)</li>
@@ -289,27 +295,27 @@ body, html {
     <!-- Hide this text on small devices -->
     <div class="w3-col m6 w3-hide-small w3-padding-large">
       <p>After exploring and processing our data we had to determine the best machine learning model
-        for this problem. Because we are classifying users as potential to ‘default’ or ‘non-default’ we 
-       are comparing Logistic Regression, Random Forest, and Neural Networks. To the left you can 
-       view the efficacy of each model using the Receiver Operating Characteristic (ROC) Curve of 
-       each model. 
-       <br>We will be relying heavily on the Logistic Regression model to determine a users status as 
-       a probability to default. Classifying with a probability is the most valuable output for this problem 
-       as the application is ideally combined with human logic to advise a user’s next steps. 
-       
-       <br> Random Forest can provide insight into the decision flow of determining a user’s future 
-       default status, but the downside is that Random Forest and Decisions can easily ‘over-fit’ the 
-       models, meaning the model cannot generalize, resulting in a model that isn’t receptive to new 
-       data. 
-       <br> 
-       Neural Networks can provide extremely accurate predictions, but the limitation to using neural 
-       networks in a problem such as this, is the lack of visibility to the prediction logic and process. It 
-       is a ‘black box’ that is not easily translated to replicable process. 
+        for this problem. Because we are classifying users as potential to ‘default’ or ‘non-default’ we
+       are comparing Logistic Regression, Random Forest, and Neural Networks. To the left you can
+       view the efficacy of each model using the Receiver Operating Characteristic (ROC) Curve of
+       each model.
+       <br>We will be relying heavily on the Logistic Regression model to determine a users status as
+       a probability to default. Classifying with a probability is the most valuable output for this problem
+       as the application is ideally combined with human logic to advise a user’s next steps.
+
+       <br> Random Forest can provide insight into the decision flow of determining a user’s future
+       default status, but the downside is that Random Forest and Decisions can easily ‘over-fit’ the
+       models, meaning the model cannot generalize, resulting in a model that isn’t receptive to new
+       data.
+       <br>
+       Neural Networks can provide extremely accurate predictions, but the limitation to using neural
+       networks in a problem such as this, is the lack of visibility to the prediction logic and process. It
+       is a ‘black box’ that is not easily translated to replicable process.
        </p>
     </div>
   </div>
   <p class="w3-large w3-center w3-padding-16">To Explore our Data and Models, Visit our Repository:</p>
-  
+
   <a href="https://github.com/monagoli/cc_project3"><p class="w3-wide w3-center"><i class="fab fa-github"></i>Github</p></a>
   <!-- <div class="w3-light-grey">
     <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:100%"></div>
@@ -334,7 +340,7 @@ body, html {
   </div>
   <div class="w3-quarter w3-section"><br>
     <span class="w3-xlarge"><img src="https://geteverything.org/wp-content/uploads/2013/08/13.png" alt=""height="20%" width="20%"></span><br>
-    HTML/CSS 
+    HTML/CSS
   </div>
 </div>
 
@@ -400,7 +406,7 @@ body, html {
   </div>
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p> -->
 </footer>
- 
+
 <!-- Add Google Maps -->
 <script>
 function myMap()
