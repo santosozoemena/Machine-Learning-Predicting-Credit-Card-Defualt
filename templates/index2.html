@@ -97,7 +97,7 @@ body, html {
 
     <div class="w3-row w3-padding-32 w3-section">
         <p>Enter applicant information for all fields</p>
-        <form  method='POST'>
+        <form action= "{{ url_for('predict') }}" method='post'>
           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
             <div class="w3-half">
               <h5>Age</h5>
@@ -161,13 +161,15 @@ body, html {
         </form>
       </div>
       <hr>
+      <hr>
       <h5>Results</h5>
-      {% if prediction[0] == 1 %}
+        {% if prediction == 1 %}
       <h3>{{ 'DEFAULT' }}!</h3>
-      {% else %}
+      {% elif prediction == 0 %}
       <h3>{{ "No Default" }}!</h3>
+      {% else %}
+      <h3>  </h3>
       {% endif %}
-
     </div>
   </div>
 
