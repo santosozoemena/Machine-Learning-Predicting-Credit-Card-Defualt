@@ -38,7 +38,7 @@ def predict(prediction=None):
         __table_args__ = {'extend_existing': True}
         id = Column(Integer, primary_key = "True")
         default = Column(Integer)
-
+        prob = Column(Integer)
     Base.prepare(engine, reflect=True)
     Base.metadata.create_all(engine)
 
@@ -67,22 +67,36 @@ def predict(prediction=None):
     new_sex = int(gender)
     new_education = int(education)
     new_marriage = int(marriage)
+    new_credit_score =int(credit_score)
+    new_pay_to_bill = int(bill_payment)/int(credit_bill)
+    new_credit_utilization = int(credit_bill)/int(creditA)
+
     prediction = loaded_model.predict([[ creditA, new_sex , new_education , new_marriage, new_age,
-                                     2.17000000e+00, credit_bill, bill_payment, 9.30000000e-01, 4.69950000e-02]])
+                                     new_credit_score, credit_bill, bill_payment, new_pay_to_bill, new_credit_utilization]])
+    
+    probability = loaded_model.predict_proba([[ creditA, new_sex , new_education , new_marriage, 
+                                    new_age,new_credit_score, credit_bill, bill_payment, new_pay_to_bill, new_credit_utilization]])
 
     # variable prediction returns [1] or [0]
     # so we grab the element inside the list and convert it to a integer
     # then insert that integer into default column in credit_default table
     # add and commit
     prediction = int(prediction[0])
+    # probability = float(probability[0])
+    prob = CreditDefault(prob=probability)
     default = CreditDefault(default=prediction)
     session.add(default)
+    session.add(prob)
+
     session.commit()
 
     # Now query the database to retrieve the prediction and render the data into the index2.html
-    prediction = engine.execute('SELECT * FROM credit_default LIMIT 5').fetchall()[-1][1]
+    prediction = engine.execute('SELECT * FROM credit_default LIMIT 5').fetchall()[0][1]
+    probability = engine.execute('SELECT * FROM credit_default LIMIT 5').fetchall()[0][2]
 
-    return render_template('index2.html', prediction=prediction )
+    print(probability)
+    print(prediction)
+    return render_template('index.html', prediction=prediction )
 
 
 if __name__ == '__main__':

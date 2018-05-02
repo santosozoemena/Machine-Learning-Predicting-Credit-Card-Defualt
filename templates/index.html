@@ -115,28 +115,28 @@ body, html {
           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
               <div class="w3-half">
                 <h5>Education Level</h5>
-                <input class="w3-input w3-border" type="radio" name="education" value="1"> High School<br>
+                <input class="w3-input w3-border" type="radio" name="education" value="3"> High School<br>
                 <input class="w3-input w3-border" type="radio" name="education" value="2"> Undergraduate<br>
-                <input class="w3-input w3-border" type="radio" name="education" value="3"> Graduate<br>
-                <input class="w3-input w3-border" type="radio" name="education" value="1"> Other<br>
+                <input class="w3-input w3-border" type="radio" name="education" value="1"> Graduate<br>
+                <input class="w3-input w3-border" type="radio" name="education" value="4"> Other<br>
               </div>
               <div class="w3-half">
                   <h5>Marital Status</h5>
-                  <input class="w3-input w3-border" type="radio" name="marriage" value="1"> Single<br>
-                  <input class="w3-input w3-border" type="radio" name="marriage" value="2"> Married<br>
-                  <input class="w3-input w3-border" type="radio" name="marriage" value="1"> Other<br>
+                  <input class="w3-input w3-border" type="radio" name="marriage" value="2"> Single<br>
+                  <input class="w3-input w3-border" type="radio" name="marriage" value="1"> Married<br>
+                  <input class="w3-input w3-border" type="radio" name="marriage" value="3"> Other<br>
                 </div>
             </div>
             <hr>
           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
             <div class="w3-half">
               <h5>Billing History in the Last 6 Months</h5>
-              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= 'I do not carry a balance'>I do not carry a balance
-              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '6'>Always On Time
-              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='30+ day past due'>30+ day past due
-              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='60+ day past due'>60+ day past due
-              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '90+ day past due'>90+ day past due
-              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='120+ day past due'>120+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '-2'>I do not carry a balance
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '-1'>Always On Time
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='1'>30+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='2'>60+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '3'>90+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='4'>120+ day past due
             </div>
             <div class="w3-half">
               <h5>Current Credit Avaiable </h5>
@@ -157,21 +157,25 @@ body, html {
           <button class="w3-button w3-black w3-right w3-section" type="submit">
               <i class="fa fa-calculator"></i> Submit
             </button>
-            </a>
+            <br><br>
+            <div><p class="w3-right"><em> after 'Submit' results will populate below<br> </em></p></div>
         </form>
       </div>
       <hr>
-      <hr>
-      <h5>Applicant Status</h5>
+      <h3 class="w3-row-padding w3-center">Applicant Status</h3>
       <div class="w3-row-padding w3-center">
-        <div class="w3-col m12 w3-center">
+        <div class="w3-col m6 w3-center">
         {% if prediction == 1 %}
-      <p>{{ 'Applicant is Predicted to Default' }}</p>
+      <h5>{{ 'Applicant is Predicted to Default' }}</h5>
       {% elif prediction == 0 %}
-      <p>{{ "Applicant is Not Predicted to Default" }}</p>
+      <h5>{{ "Applicant is Not Predicted to Default" }}</h5>
       {% else %}
-      <p>  </p>
+    </div>
       {% endif %}
+      <div class="w3-col m6 w3-center">
+      
+      <h5>{{ probability }}</h5>
+    </div>
       </div>
       </div>
     </div>
