@@ -11,7 +11,7 @@ from sqlalchemy.orm import sessionmaker
 import pickle
 
 #loaded my random forest Model
-loaded_model = pickle.load(open('RandomForest_model.sav', 'rb'))
+loaded_model = pickle.load(open('models/RandomForest_model.sav', 'rb'))
 
 app = Flask(__name__)
 
@@ -28,7 +28,7 @@ Base.metadata.drop_all(engine)
 #first route to homepage
 @app.route('/')
 def home():
-    return render_template('index2.html')
+    return render_template('index.html')
 
 #second route does the predictions and creates table
 @app.route('/predict', methods=['POST'])
