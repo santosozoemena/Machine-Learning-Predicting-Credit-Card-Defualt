@@ -98,7 +98,7 @@ def predict(prediction=None):
 
     # print(probability)
     # print(prediction)
-    return render_template('index.html', prediction=prediction )
+    return render_template('index.html', prediction=prediction, probability=probability )
 
 
 if __name__ == '__main__':
