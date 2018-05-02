@@ -82,20 +82,22 @@ def predict(prediction=None):
     # then insert that integer into default column in credit_default table
     # add and commit
     prediction = int(prediction[0])
-    # probability = float(probability[0])
+    probability = float(probability[0][1])
     prob = CreditDefault(prob=probability)
     default = CreditDefault(default=prediction)
     session.add(default)
     session.add(prob)
 
     session.commit()
+    # print(probability)
+    # print(prediction)
 
     # Now query the database to retrieve the prediction and render the data into the index2.html
     prediction = engine.execute('SELECT * FROM credit_default LIMIT 5').fetchall()[0][1]
-    probability = engine.execute('SELECT * FROM credit_default LIMIT 5').fetchall()[0][2]
+    probability = engine.execute('SELECT * FROM credit_default LIMIT 5').fetchall()[1][2]
 
-    print(probability)
-    print(prediction)
+    # print(probability)
+    # print(prediction)
     return render_template('index.html', prediction=prediction )
 
 
