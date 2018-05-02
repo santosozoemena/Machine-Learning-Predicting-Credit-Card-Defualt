@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
@@ -84,21 +88,21 @@ body, html {
     <!-- <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Everyone <span class="w3-hide-small">Hates a Hard Pull
     <br><span>Everyone </span><br> so check this out before your run/ruin it</span></span> -->
     <h4 class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-      Predicting Credit Default <br>
+      Predicting Credit Default
     </h4>
-    <p class="w3-center"><em> at the touch of a button<br> </em></p>
+    <p class="w3-center w3-padding-large w3-black w3-medium w3-wide w3-animate-opacity"><em> at the touch of a button<br> </em></p>
   </div>
 </div>
 
   <!-- Container (Contact Section) -->
   <div class="w3-content w3-container w3-padding-64" id="contact">
-    <h3 class="w3-center">DEFAULT PREDICTOR</h3>
+    <h3 class="w3-center w3-padding-large w3-xlarge  w3-animate-opacity">DEFAULT PREDICTOR</h3>
     <p class="w3-center"><em>It isn't magic, it is machine learning! Read more below.</em></p>
 
-    <div class="w3-row w3-padding-32 w3-section">
-        <p>Enter applicant information for all fields</p>
+    <div class="card w3-row w3-padding-32 w3-section">
+        <p style="margin:8px">Enter applicant information for all fields</p>
         <form action= "{{ url_for('predict') }}" method='post'>
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-row-padding" style="margin:8px">
             <div class="w3-half">
               <h5>Age</h5>
               <input class="w3-input w3-border" type="text" placeholder="(Please use whole numbers)" input name="Age">
@@ -112,7 +116,7 @@ body, html {
             </div>
           </div>
           <hr>
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-row-padding" style=""margin:8px"">
               <div class="w3-half">
                 <h5>Education Level</h5>
                 <input class="w3-input w3-border" type="radio" name="education" value="3"> High School<br>
@@ -128,7 +132,7 @@ body, html {
                 </div>
             </div>
             <hr>
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-row-padding" style=""margin:8px"">
             <div class="w3-half">
               <h5>Billing History in the Last 6 Months</h5>
               <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '-2'>I do not carry a balance
@@ -144,9 +148,9 @@ body, html {
             </div>
           </div>
           <hr>
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-row-padding" style=""margin:8px"">
               <div class="w3-half">
-                <h5>Average Bill 6 months </h5>
+                <h5>Last Month Credit Bill </h5>
                 <input class="w3-input w3-border" type="number" placeholder="(exclude $)" required name="Credit Bill">
               </div>
               <div class="w3-half">
@@ -158,12 +162,12 @@ body, html {
               <i class="fa fa-calculator"></i> Submit
             </button>
             <br><br>
-            <div><p class="w3-right"><em> after 'Submit' results will populate below<br> </em></p></div>
+            <div><p class="w3-right" id="submit"><em> after 'Submit' results will populate below<br> </em></p></div>
         </form>
       </div>
       <hr>
-      <h3 class="w3-row-padding w3-center">Applicant Status</h3>
-      <div class="w3-row-padding w3-center">
+      <h3 class="w3-padding-large w3-xlarge  w3-animate-opacity w3-center">APPLICANT RESULTS</h3>
+      <div class=" card w3-row-padding w3-center" "margin:8px">
         <div class="w3-col m6 w3-center">
         {% if prediction == 1 %}
       <h5>{{ 'Applicant is Predicted to Default' }}</h5>
@@ -190,7 +194,7 @@ body, html {
 <div class="w3-content w3-container w3-padding-64" >
   <!-- <h3 class="w3-center">Project Documentation</h3> -->
   <!-- <p class="w3-center"><em>Why and How</em></p> -->
-  <p>The financial pressure on the millennial generation is ever increasing. Credit scores are a valuable indicator that everyone is trying to protect. With every ‘hard pull’
+  <p>The financial pressure on the millennial generation is ever increasing. Credit scores are a valuable indicator that everyone is trying to protect. With every ‘hard credit pull’
     the credit bureau is adding a negative weight to consumer’s credit scores. It is a vicious circle, you must apply for credit to get credit and if you are not approved, you impacted your score negatively and you still do not have credit.
     </p>
     <p>We have created an application using supervised machine learning to train a model with credit default data to determine the classification (“default” vs “non-default”) of the user’s liability. By taking a user input that can be passed
@@ -200,7 +204,10 @@ body, html {
       <div class="w3-col m12 w3-left w3-padding-large">
         <h5><b><i class="	fa fa-bar-chart w3-margin-right "></i>Data Explotation</b></h5><br>
         <p>
-          The dataset contains 25 fields, including ID. All monitary amounts are expressed in New Taiwan Dollars in 2005. All fields have been explained below.
+          The dataset comes from UC Irvine Machine Learning datasets. All monitary amounts are expressed in New Taiwan Dollars in 2005. We accepted this to be relevant for our model because 22% of accounts in the dataset show atleast a 30 day default
+           and in 2009 "nearly 26 percent of Americans admit they do not pay their (credit card) bills on time, including people who sometimes miss a payment altogether". Default ratio is consistent regardless of location.
+           <br>
+           Dataset contains 25 fields, including ID. All fields have been explained below.
         </p>
         <hr>
         <dl> Dataset MetaData
@@ -271,7 +278,7 @@ body, html {
     <div class="w3-row">
       <div class="w3-col m12 w3-left w3-padding-large">
         <h5><b><i class="	fa fa-bar-chart w3-margin-right"></i>Feature Engineering</b></h5><br>
-        <p>To properly utilize this dataset, we had to create time independent variables from the fields that are measured over times.
+        <p>To properly utilize this dataset, we had to create time-independent variables from the fields that are measured over times.
           This would allow us to gather a user input from our application and apply that to our model. Here are the aggregations and
           changes that we made to the dataset before modeling:
           </p>
@@ -300,27 +307,37 @@ body, html {
     <div class="w3-col m6 w3-center w3-padding-large">
       <h5><b><i class="	fa fa-bar-chart w3-margin-right"></i>Model Selection</b></h5><br>
       <img src="../static/images/ROC.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="ROC Graph" width="500" height="333">
+      <div>
+          <p><br>Random Forest Feature Importance<br></p>
+        <img src="../static/images/feat.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="featureImportance" width="500" height="333">
+        </div>
+      <div>
+        <p><br>Assessing the Random Forest Model<br></p>
+      <img src="../static/images/precision.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="precision" width="500" height="333">
+      <br><br>
+      <img src="../static/images/confusion.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="confusion" width="500" height="333">
+      </div>
     </div>
 
     <!-- Hide this text on small devices -->
     <div class="w3-col m6 w3-hide-small w3-padding-large">
       <p>After exploring and processing our data we had to determine the best machine learning model
         for this problem. Because we are classifying users as potential to ‘default’ or ‘non-default’ we
-       are comparing Logistic Regression, Random Forest, and Neural Networks. To the left you can
-       view the efficacy of each model using the Receiver Operating Characteristic (ROC) Curve of
+       are comparing Logistic Regression, Random Forest, and Neural Networks. We used Precision, Recall, F1 Score, and Confusion Matrix to rate our models. 
+       <br> <br>
+       To the left you can
+       view the efficacy of the models using the Receiver Operating Characteristic (ROC) Curve of
        each model.
-       <br>We will be relying heavily on the Logistic Regression model to determine a users status as
-       a probability to default. Classifying with a probability is the most valuable output for this problem
-       as the application is ideally combined with human logic to advise a user’s next steps.
-
-       <br> Random Forest can provide insight into the decision flow of determining a user’s future
-       default status, but the downside is that Random Forest and Decisions can easily ‘over-fit’ the
+       <br><br> We are using the Random Forest model because it produced the best F1 Score. Random Forest models can provide insight into the feature importance and the decision flow of determining a user’s future
+       default status, but the downside is that Random Forest and Decisions Trees can ‘over-fit’ the
        models, meaning the model cannot generalize, resulting in a model that isn’t receptive to new
-       data.
-       <br>
-       Neural Networks can provide extremely accurate predictions, but the limitation to using neural
+       data. The ROC Graph shows that model is not overfit but is producing the most accurate results. 
+       <br><br>Logistic Regression model can easily produce a probability of an applicant to default. Classifying with a probability is the most valuable output for this problem
+       as the application is ideally combined with human logic to advise a user’s next steps, but the Random Forest produces a higher F1 score.
+       <br><br>
+       Neural Networks can often provide extremely accurate predictions, but the limitation to using neural
        networks in a problem such as this, is the lack of visibility to the prediction logic and process. It
-       is a ‘black box’ that is not easily translated to replicable process.
+       is a ‘black box’ that is not easily translated to replicable process. In this case it did not out perform the other model types.
        </p>
     </div>
   </div>
@@ -372,15 +389,17 @@ body, html {
       
       <a href="https://github.com/monagoli"><img src="https://media.licdn.com/dms/image/C5603AQEAN1767vEV8g/profile-displayphoto-shrink_800_800/0?e=1530414000&v=beta&t=EINIYJsL1y3bU68sI3DQ4d9bmhWi6Ljy7RoNE334DVE"
         style="width:50% height:50%" onclick="onClick(this)" class="w3-hover-opacity image-cropper" alt="Mona">
-      <br>
-      <p>Here is a sentence about Mona</p>
+      </a>
+        <br>
+      <p>Data Analyst with Economics background, Social Media Expert</p>
     </div>
 
     <div class="w3-col m4">
       <a href="https://github.com/santosozoemena"><img src="https://media.licdn.com/dms/image/C5603AQH3ZFdkltuHBQ/profile-displayphoto-shrink_800_800/0?e=1530748800&v=beta&t=WuhWtQbnYA6X1U5FO-yLbGdsVYETG9qxewOC90ZKAgA"
         style="width:50% height:50%" onclick="onClick(this)" class="w3-hover-opacity image-cropper" alt="Santos">
-      <br>
-      <p>Here is a sentence about Santos</p>
+      </a>
+        <br>
+      <p>Recent graduate with a passion and skill for Data Science</p>
     </div>
 
     <div class="w3-col m4 ">
@@ -388,7 +407,7 @@ body, html {
         style="width:50% height:50%" onclick="onClick(this)" class="w3-hover-opacity image-cropper" alt="Mindy">
         </a>
       <br>
-      <p>Here is a sentence about Mindy</p>
+      <p>Experienced Business Analyst with Operations and E-Commerce background</p>
     </div>
 
     <!-- <button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">LOAD MORE</button> -->
