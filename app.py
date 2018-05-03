@@ -50,9 +50,10 @@ def predict(prediction=None):
     marriage = request.form['marriage']
     credit_score = request.form['credit_score']
     creditA = request.form['Credit']
+    creditB = request.form['CreditBalance']
     credit_bill = request.form['Credit Bill']
     bill_payment = request.form['Bill Payment']
-
+    print (creditB)
 #
 #     #These are the features that need to be past in the model from our dataset
 #     # prediction = loaded_model.predict([[ LIMIT_BAL_US, SEX , EDUCATION , MARRIAGE, AGE, PAY_SCORE_AVG, BILL_AVG_US, PAY_AMT_AVG_US
@@ -69,8 +70,9 @@ def predict(prediction=None):
     new_education = int(education)
     new_marriage = int(marriage)
     new_credit_score =int(credit_score)
-    new_pay_to_bill = int(bill_payment)/int(credit_bill)
-    new_credit_utilization = int(credit_bill)/int(creditA)
+    new_pay_to_bill = int(bill_payment)/int(creditB)
+    new_credit_utilization = int(creditB)/int(creditA)
+
 
     prediction = loaded_model.predict([[ creditA, new_sex , new_education , new_marriage, new_age,
                                      new_credit_score, credit_bill, bill_payment, new_pay_to_bill, new_credit_utilization]])
