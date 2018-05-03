@@ -88,7 +88,7 @@ body, html {
     <!-- <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Everyone <span class="w3-hide-small">Hates a Hard Pull
     <br><span>Everyone </span><br> so check this out before your run/ruin it</span></span> -->
     <h4 class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-      Predicting Credit Default
+      Predicting Credit Card Default
     </h4>
     <p class="w3-center w3-padding-large w3-black w3-medium w3-wide w3-animate-opacity"><em> at the touch of a button<br> </em></p>
   </div>
@@ -137,13 +137,13 @@ body, html {
               <h5>Billing History in the Last 6 Months</h5>
               <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '-2'>I do not carry a balance
               <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '-1'>Always On Time
-              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='1'>30+ day past due
-              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='2'>60+ day past due
-              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '3'>90+ day past due
-              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='4'>120+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='1'>One or more occurances of 30+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='2'>One or more occurances of 60+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '3'>One or more occurances of 90+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='4'>One or more occurances of 120+ day past due
             </div>
             <div class="w3-half">
-              <h5>Current Credit Avaiable </h5>
+              <h5>Current Credit Limit </h5>
               <input class="w3-input w3-border" type="number" placeholder="(exclude $)" required name="Credit">
             </div>
           </div>
@@ -165,7 +165,7 @@ body, html {
             <div><p class="w3-right" id="submit"><em> after 'Submit' results will populate below<br> </em></p></div>
         </form>
       </div>
-      <hr>
+
       <h3 class="w3-padding-large w3-xlarge  w3-animate-opacity w3-center">APPLICANT RESULTS</h3>
       <div class=" card w3-row-padding w3-center" style="margin:8px">
        
@@ -179,23 +179,28 @@ body, html {
     {% endif %} -->
 
     <div class="w3-col m12 w3-center"style="margin:8px">
-        {% if (probability*100|float) >= 0  %}
+      {% if probability == None %}
+      <h5> </h5>
+      {% elif (probability*100|float) <= 40  %}
       <h5>{{ 'Low Risk of Default' }}</h5>
       {% elif (probability*100|float) > 60 %}
       <h5>{{ "High Risk of Default" }}</h5>
-      <!-- {% elif probability*100>40 %} -->
       {% else %}
       <h5>{{ "Moderate Risk of Default" }}</h5>
       {% endif %}
     </div>
 
-
-      
-      <h5>{{'%0.2f'| format(probability*100|float)}}% probability to default</h5>
-      </div>
-      </div>
-    </div>
+    {% if probability == None %}
+    <h5> </h5>
+    {% else %}
+    <h5>{{'%0.2f'| format(probability*100|float)}}% probability to default</h5>
+    {% endif %}
   </div>
+  <br>
+  <h5 class="w3-col m12 w3-center"> Risk Categories: </h5>
+  <h6 class="w3-col m12 w3-center" id="legend"> High: Probability>60%<br> Moderate: Probability <= 60% and > 40% <br>    Low: Probability <= 40%</h6>
+</div>
+
 <!-- ADD IN LEGEND FOR -->
 <!-- Third Parallax Image with Portfolio Text -->
 <div class="bgimg-3 w3-display-container w3-opacity-min"id="about">
@@ -206,11 +211,14 @@ body, html {
 <div class="w3-content w3-container w3-padding-64" >
   <!-- <h3 class="w3-center">Project Documentation</h3> -->
   <!-- <p class="w3-center"><em>Why and How</em></p> -->
-  <p>The financial pressure on the millennial generation is ever increasing. Credit scores are a valuable indicator that everyone is trying to protect. With every ‘hard credit pull’
-    the credit bureau is adding a negative weight to consumer’s credit scores. It is a vicious circle, you must apply for credit to get credit and if you are not approved, you impacted your score negatively and you still do not have credit.
+  <p>The financial pressure on the millennial generation is ever increasing. Credit scores are a valuable asset that everyone is trying to protect. 
+    With every credit check
+    the credit bureau is adding negative weight to consumer’s credit scores. It is a vicious circle in which you must apply for credit to get credit and if 
+    you are not approved, your credit score is negativly impacted and you still do not have credit.
     </p>
-    <p>We have created an application using supervised machine learning to train a model with credit default data to determine the classification (“default” vs “non-default”) of the user’s liability. By taking a user input that can be passed
-      in as features in the model, we can predict the user’s likelihood to default, which can be equated to not qualifying for line of credit before a ‘hard pull’ has been completed.
+    <p>We have created an application using supervised machine learning to train a model with credit default data to determine the probability and classification 
+      (“default” vs “non-default”) of the user’s liability. By taking a user input that can be passed
+      in as features in the model, we can predict the user’s likelihood to default, which can be equated to not qualifying for line of credit before a "hard pull" has been completed.
     </p>
     <div class="w3-row">
       <div class="w3-col m12 w3-left w3-padding-large">
@@ -336,8 +344,8 @@ body, html {
 
     <!-- Hide this text on small devices -->
     <div class="w3-col m6 w3-hide-small w3-padding-large">
-      <p>After exploring and processing our data we had to determine the best machine learning model
-        for this problem. Because we are classifying users as potential to ‘default’ or ‘non-default’ we
+      <p>After exploring and processing our data we began to determine the best machine learning model
+        for this problem. Because we are classifying users by their potential to default or not default we
        are comparing Logistic Regression, Random Forest, and Neural Networks. We used Precision, Recall, F1 Score, and Confusion Matrix to rate our models. 
        <br> <br>
        To the left you can
@@ -410,6 +418,7 @@ body, html {
         style="width:50% height:50%" onclick="onClick(this)" class="w3-hover-opacity image-cropper" alt="Mona">
       </a>
         <br>
+        <h5>Mona</h5>
       <p>Data Analyst with Economics background, Social Media Expert</p>
     </div>
 
@@ -418,6 +427,7 @@ body, html {
         style="width:50% height:50%" onclick="onClick(this)" class="w3-hover-opacity image-cropper" alt="Santos">
       </a>
         <br>
+        <h5>Santos</h5>
       <p>Recent graduate with a passion and skill for Data Science</p>
     </div>
 
@@ -426,6 +436,7 @@ body, html {
         style="width:50% height:50%" onclick="onClick(this)" class="w3-hover-opacity image-cropper" alt="Mindy">
         </a>
       <br>
+      <h5>Mindy</h5>
       <p>Experienced Business Analyst with Operations and E-Commerce background</p>
     </div>
 
