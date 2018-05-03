@@ -3,10 +3,14 @@
 <title>Credit Default Risk </title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../static/style.css">
+<link rel="stylesheet" href="./static/style.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
@@ -31,7 +35,7 @@ body, html {
 
 /* Second image (Portfolio) */
 .bgimg-2 {
-    background-image: url("../static/images.background.jpg");
+    background-image: url("../static/images/background.jpg");
     min-height: 400px;
 }
 
@@ -84,86 +88,120 @@ body, html {
     <!-- <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Everyone <span class="w3-hide-small">Hates a Hard Pull
     <br><span>Everyone </span><br> so check this out before your run/ruin it</span></span> -->
     <h4 class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
-      Everyone Hates a "Hard Pull" <br> 
+      Predicting Credit Card Default
     </h4>
-    <p class="w3-center"><em> really, everyone.<br> so check this out before you run/ruin it</em></p> 
+    <p class="w3-center w3-padding-large w3-black w3-medium w3-wide w3-animate-opacity"><em> at the touch of a button<br> </em></p>
   </div>
 </div>
-  
+
   <!-- Container (Contact Section) -->
   <div class="w3-content w3-container w3-padding-64" id="contact">
-    <h3 class="w3-center">DEFAULT PREDICTOR</h3>
+    <h3 class="w3-center w3-padding-large w3-xlarge  w3-animate-opacity">DEFAULT PREDICTOR</h3>
     <p class="w3-center"><em>It isn't magic, it is machine learning! Read more below.</em></p>
-  
-    <div class="w3-row w3-padding-32 w3-section">
-        <p>Enter applicant information for all fields</p>
-         <form method='POST' action='/submit' role='form' name='feature_form'>
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+
+    <div class="card w3-row w3-padding-32 w3-section">
+        <p style="margin:8px">Enter applicant information for all fields</p>
+        <form action= "{{ url_for('predict') }}" method='post'>
+          <div class="w3-row-padding" style="margin:8px">
             <div class="w3-half">
               <h5>Age</h5>
-              <input class="w3-input w3-border" type="text" placeholder="(Please use whole numbers)" required name="Age">
+              <input class="w3-input w3-border" type="text" placeholder="(Please use whole numbers)" input name="Age">
             </div>
             <div class="w3-half">
               <H5>Gender</h5>
-              <input class="w3-input w3-border" type="radio" value ="Male" required name="gender">Male
-              <input class="w3-input w3-border" type="radio" value ="Female" required name="gender"> Female
+              <input class="w3-input w3-border" type="radio" value="1" required name="Gender">Male
+              <input class="w3-input w3-border" type="radio" value="2" required name="Gender"> Female
+              <!-- <input class="w3-input w3-border" type="radio" name="marriage" value="1"> Single<br> -->
+
             </div>
           </div>
           <hr>
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-row-padding" style="margin:8px">
               <div class="w3-half">
                 <h5>Education Level</h5>
-                <input class="w3-input w3-border" type="radio" name="education" value="High School"> High School<br>
-                <input class="w3-input w3-border" type="radio" name="education" value="Undergraduate"> Undergraduate<br>
-                <input class="w3-input w3-border" type="radio" name="education" value="Graduate"> Graduate<br>
-                <input class="w3-input w3-border" type="radio" name="education" value="Other"> Other<br>
+                <input class="w3-input w3-border" type="radio" name="education" value="3"> High School<br>
+                <input class="w3-input w3-border" type="radio" name="education" value="2"> Undergraduate<br>
+                <input class="w3-input w3-border" type="radio" name="education" value="1"> Graduate<br>
+                <input class="w3-input w3-border" type="radio" name="education" value="4"> Other<br>
               </div>
               <div class="w3-half">
                   <h5>Marital Status</h5>
-                  <input class="w3-input w3-border" type="radio" name="marriage" value="single"> Single<br>
-                  <input class="w3-input w3-border" type="radio" name="marriage" value="married"> Married<br>
-                  <input class="w3-input w3-border" type="radio" name="marriage" value="Other"> Other<br>
+                  <input class="w3-input w3-border" type="radio" name="marriage" value="2"> Single<br>
+                  <input class="w3-input w3-border" type="radio" name="marriage" value="1"> Married<br>
+                  <input class="w3-input w3-border" type="radio" name="marriage" value="3"> Other<br>
                 </div>
             </div>
             <hr>
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-row-padding" style="margin:8px">
             <div class="w3-half">
               <h5>Billing History in the Last 6 Months</h5>
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" name="credit_score">I do not carry a balance
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" name="credit_score">Always On Time
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" name="credit_score">30+ day past due
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" name="credit_score">60+ day past due
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" name="credit_score">90+ day past due
-              <input class="w3-input w3-border" type="radio" placeholder="credit score" name="credit_score">120+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '-2'>I do not carry a balance
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '-1'>Always On Time
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='1'>One or more occurances of 30+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='2'>One or more occurances of 60+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '3'>One or more occurances of 90+ day past due
+              <input class="w3-input w3-border" type="radio"  required name="credit_score" value='4'>One or more occurances of 120+ day past due
             </div>
             <div class="w3-half">
-              <h5>Current Credit Avaiable </h5>
-              <input class="w3-input w3-border" type="number" placeholder="(exclude $)" name="credit">
+              <h5>Current Credit Limit </h5>
+              <input class="w3-input w3-border" type="number" placeholder="(exclude $)" required name="Credit">
             </div>
           </div>
           <hr>
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-row-padding" style="margin:8px">
               <div class="w3-half">
                 <h5>Last Month Credit Bill </h5>
-                <input class="w3-input w3-border" type="number" placeholder="(exclude $)" name="credit_bill">
+                <input class="w3-input w3-border" type="number" placeholder="(exclude $)" required name="Credit Bill">
               </div>
               <div class="w3-half">
                 <h5>Last Month Credit Bill Payment </h5>
-                <input class="w3-input w3-border" type="number" placeholder="(exclude $)" name="bill_payment">
+                <input class="w3-input w3-border" type="number" placeholder="(exclude $)" required name="Bill Payment">
               </div>
             </div>
-          <a href="/submit"><button class="w3-button w3-black w3-right w3-section" type="submit">
+          <button class="w3-button w3-black w3-right w3-section" type="submit">
               <i class="fa fa-calculator"></i> Submit
             </button>
-            </a>
+            <br><br>
+            <div><p class="w3-right" id="submit"><em> after 'Submit' results will populate below<br> </em></p></div>
         </form>
       </div>
-      <hr>
-      <h5>Results</h5>
 
+      <h3 class="w3-padding-large w3-xlarge  w3-animate-opacity w3-center">APPLICANT RESULTS</h3>
+      <div class=" card w3-row-padding w3-center" style="margin:8px">
+       
+        <!-- <div class="w3-col m12 w3-center"style="margin:8px">
+        {% if prediction == 1 %}
+      <h5>{{ 'Applicant is Predicted to Default' }}</h5>
+      {% elif prediction == 0 %}
+      <h5>{{ "Applicant is Not Predicted to Default" }}</h5>
+      {% else %}
     </div>
-  </div>
+    {% endif %} -->
 
+    <div class="w3-col m12 w3-center"style="margin:8px">
+      {% if probability == None %}
+      <h5> </h5>
+      {% elif (probability*100|float) <= 40  %}
+      <h5>{{ 'Low Risk of Default' }}</h5>
+      {% elif (probability*100|float) > 60 %}
+      <h5>{{ "High Risk of Default" }}</h5>
+      {% else %}
+      <h5>{{ "Moderate Risk of Default" }}</h5>
+      {% endif %}
+    </div>
+
+    {% if probability == None %}
+    <h5> </h5>
+    {% else %}
+    <h5>{{'%0.2f'| format(probability*100|float)}}% probability to default</h5>
+    {% endif %}
+  </div>
+  <br>
+  <h5 class="w3-col m12 w3-center"> Risk Categories: </h5>
+  <h6 class="w3-col m12 w3-center" id="legend"> High: Probability>60%<br> Moderate: Probability <= 60% and > 40% <br>    Low: Probability <= 40%</h6>
+</div>
+
+<!-- ADD IN LEGEND FOR -->
 <!-- Third Parallax Image with Portfolio Text -->
 <div class="bgimg-3 w3-display-container w3-opacity-min"id="about">
     <div class="w3-display-middle">
@@ -173,17 +211,25 @@ body, html {
 <div class="w3-content w3-container w3-padding-64" >
   <!-- <h3 class="w3-center">Project Documentation</h3> -->
   <!-- <p class="w3-center"><em>Why and How</em></p> -->
-  <p>The financial pressure on the millennial generation is ever increasing. Credit scores are a valuable indicator that everyone is trying to protect. With every ‘hard pull’ 
-    the credit bureau is adding a negative weight to consumer’s credit scores. It is a vicious circle, you must apply for credit to get credit and if you are not approved, you impacted your score negatively and you still do not have credit.    
+  <p>The financial pressure on the millennial generation is ever increasing. Credit scores are a valuable asset that everyone is trying to protect. 
+    With every credit check
+    the credit bureau is adding negative weight to consumer’s credit scores. It is a vicious circle in which you must apply for credit to get credit and if 
+    you are not approved, your credit score is negativly impacted and you still do not have credit.
     </p>
-    <p>We have created an application using supervised machine learning to train a model with credit default data to determine the classification (“default” vs “non-default”) of the user’s liability. By taking a user input that can be passed 
-      in as features in the model, we can predict the user’s likelihood to default, which can be equated to not qualifying for line of credit before a ‘hard pull’ has been completed. 
+    <p>We have created an application using supervised machine learning to train a model with credit default data to determine the probability and classification 
+      (“default” vs “non-default”) of the user’s liability. By taking a user input that can be passed
+      in as features in the model, we can predict the user’s likelihood to default, which can be equated to not qualifying for line of credit before a "hard pull" has been completed.
     </p>
     <div class="w3-row">
       <div class="w3-col m12 w3-left w3-padding-large">
         <h5><b><i class="	fa fa-bar-chart w3-margin-right "></i>Data Explotation</b></h5><br>
         <p>
-          The dataset contains 25 fields, including ID. All monitary amounts are expressed in New Taiwan Dollars in 2005. All fields have been explained below.
+          The dataset comes from UC Irvine Machine Learning datasets. All monetary amounts are expressed in New Taiwan Dollars in 2005. We accepted this to be relevant for our model because 22% of accounts in the dataset show at least a 30 day default
+           . According to the National Foundation for Credit Counseling "nearly 26 percent of Americans admit they do not pay their (credit card) bills on time, including people who sometimes miss a payment altogether(2009)." 
+           Default ratio is not dependent on geographical location.
+           
+           <br><br>
+           Dataset contains 25 fields, including ID. All fields have been explained below.
         </p>
         <hr>
         <dl> Dataset MetaData
@@ -213,20 +259,20 @@ body, html {
                           (years)
                       </dd>
                     </dt>
-                    <li><dt>pay_1 - pay_6 : History of past payment. Past monthly payment records 
+                    <li><dt>pay_1 - pay_6 : History of past payment. Past monthly payment records
                         From April to September, 2005 as follows:</li>
                       <dd>
-                          pay_1 = the repayment status in September, 2005<br> 
-                          ...<br> 
+                          pay_1 = the repayment status in September, 2005<br>
+                          ...<br>
                           pay_6 = the repayment status in April, 2005
                       </dd>
                     </dt>
                     <dt>The measurement scale for the repayment status is:
                       <dd>
-                          -1 = pay duly; <br> 
-                          1 = payment delay for one month <br> 
-                          2 = payment delay for two months<br> 
-                          ...<br> 
+                          -1 = pay duly; <br>
+                          1 = payment delay for one month <br>
+                          2 = payment delay for two months<br>
+                          ...<br>
                           9 = payment delay for nine months and above
                       </dd>
                     </dt>
@@ -240,11 +286,11 @@ body, html {
                               Amount of previous payment (NT dollar)
                           </dd>
                         </dt>
-                
+
           </ul>
         </dl>
-          <br>  
-        <p> Below we have visualized the data to understand the attributes and to make decisions on how to process the data</p> 
+          <br>
+        <p> Below we have visualized the data to understand the attributes and to make decisions on how to process the data</p>
           <hr>
       </div>
     </div>
@@ -254,27 +300,28 @@ body, html {
     <div class="w3-row">
       <div class="w3-col m12 w3-left w3-padding-large">
         <h5><b><i class="	fa fa-bar-chart w3-margin-right"></i>Feature Engineering</b></h5><br>
-        <p>To properly utilize this dataset, we had to create time independent variables from the fields that are measured over times. 
-          This would allow us to gather a user input from our application and apply that to our model. Here are the aggregations and 
-          changes that we made to the dataset before modeling: 
+        <p>To properly utilize this dataset, we had to create time-independent variables from the fields that are measured over time.
+          This would allow us to gather a user input from our application and apply that to our model. Here are the aggregations and
+          changes that we made to the dataset before modeling:
           </p>
           <br>
           <ul>
             <li> Removed ID</li>
-            <li>Created Pay ‘Score’ Average (pay_score_avg), calculated the mean of individual accounts 6 month pay ‘score’</li> 
-            <li>Created Average Payment Amount (pay_amt_avg)and Average Bill Amount(bill_amt_avg) using the same methodology</li>
+            <li>Created Pay ‘Score’ Average (pay_score_avg), calculated the mean of individual accounts 6 month pay ‘score’</li>
+            <li>Created Average Payment Amount (pay_amt_avg), calculated the mean of individual accounts 6 month payment amount</li>
+            <li>Created Average Bill Amount(bill_amt_avg), calculated the mean of individual accounts 6 month bill amount</li>
             <li>Created Credit Utilization, calculated by (bill_amt0/limit_bal)</li>
             <li>Created Payment to Bill Percentage, calculated by (avg_pay_amt/avg_bill_amt)</li>
-            <li>Adjusted all monitary amounts to 2018 USD</li>
+            <li>Adjusted all monetary amounts to 2018 USD</li>
           </ul>
           <br>
           <p>Using the created features we visualized trends by Sex, Age, Marital Status and Education. We have included Age and Sex below.</p>
           <br>
           <hr>
 
-          <div class='tableauPlaceholder' id='viz1524765648433' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;CreditDefault_0&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CreditDefault_0&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;CreditDefault_0&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1524765648433');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1000px';vizElement.style.height='854px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+          <div class='tableauPlaceholder' id='viz1525228535601' style='position: relative'><noscript><a href='#'><img alt='Dashboard 2 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;CreditDefault_0&#47;Dashboard2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CreditDefault_0&#47;Dashboard2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;CreditDefault_0&#47;Dashboard2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1525228535601');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1000px';vizElement.style.height='827px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
           <hr>
-          <div class='tableauPlaceholder' id='viz1524792769650' style='position: relative'><noscript><a href='#'><img alt='Dashboard 2 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;CreditDefault_0&#47;Dashboard2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CreditDefault_0&#47;Dashboard2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;CreditDefault_0&#47;Dashboard2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1524792769650');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1000px';vizElement.style.height='827px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+          <div class='tableauPlaceholder' id='viz1525229110914' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;CreditDefault_0&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CreditDefault_0&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;CreditDefault_0&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1525229110914');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1000px';vizElement.style.height='854px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
         </div>
     </div>
     <br>
@@ -283,32 +330,46 @@ body, html {
     <div class="w3-col m6 w3-center w3-padding-large">
       <h5><b><i class="	fa fa-bar-chart w3-margin-right"></i>Model Selection</b></h5><br>
       <img src="../static/images/ROC.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="ROC Graph" width="500" height="333">
+      <div>
+          <p><br>Random Forest Feature Importance<br></p>
+        <img src="../static/images/feat.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="featureImportance" width="500" height="333">
+        </div>
+      <!-- <div>
+        <p><br>Assessing the Random Forest Model<br></p>
+      <img src="../static/images/precision.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="precision" width="500" height="333"> -->
+      <!-- <br><br>
+      <img src="../static/images/confusion.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="confusion" width="500" height="333"> -->
+      <!-- </div> -->
     </div>
 
     <!-- Hide this text on small devices -->
     <div class="w3-col m6 w3-hide-small w3-padding-large">
-      <p>After exploring and processing our data we had to determine the best machine learning model
-        for this problem. Because we are classifying users as potential to ‘default’ or ‘non-default’ we 
-       are comparing Logistic Regression, Random Forest, and Neural Networks. To the left you can 
-       view the efficacy of each model using the Receiver Operating Characteristic (ROC) Curve of 
-       each model. 
-       <br>We will be relying heavily on the Logistic Regression model to determine a users status as 
-       a probability to default. Classifying with a probability is the most valuable output for this problem 
-       as the application is ideally combined with human logic to advise a user’s next steps. 
-       
-       <br> Random Forest can provide insight into the decision flow of determining a user’s future 
-       default status, but the downside is that Random Forest and Decisions can easily ‘over-fit’ the 
-       models, meaning the model cannot generalize, resulting in a model that isn’t receptive to new 
-       data. 
-       <br> 
-       Neural Networks can provide extremely accurate predictions, but the limitation to using neural 
-       networks in a problem such as this, is the lack of visibility to the prediction logic and process. It 
-       is a ‘black box’ that is not easily translated to replicable process. 
+      <p>After exploring and processing our data we began to determine the best machine learning model
+        for this problem. Because we are classifying users by their potential to default or not default we
+       are comparing Logistic Regression, Random Forest, and Neural Networks. We used Precision, Recall, F1 Score, and Confusion Matrix to rate our models. 
+       <br> <br>
+       To the left you can
+       view the efficacy of the models using the Receiver Operating Characteristic (ROC) Curve of
+       each model.
+       <br><br> We are using the Random Forest model because it produced the highest F1 Score(0.78). Random Forest 
+       models can provide insight into the feature importance and the decision flow of determining a user’s future
+       default status. The downside is that Random Forest and Decisions Trees can ‘over-fit’ the
+       models, meaning the model cannot generalize, resulting in a model that isn’t receptive to new
+       data. The ROC Graph shows that this model is not overfit but is producing the most accurate results. 
+       <br><br>
+       <!-- Logistic Regression model can easily produce a probability of an applicant to default. 
+       Classifying with a probability is the most valuable output for this problem
+       as the application is ideally combined with human logic to advise a user’s next steps, 
+       but the Random Forest produces a higher F1 score.
+       <br><br>
+       Neural Networks can often provide extremely accurate predictions, but the limitation to using neural
+       networks in a problem such as this, is the lack of visibility to the prediction logic and process. It
+       is a ‘black box’ that is not easily translated to replicable process. In this case it did not out perform the other model types. -->
        </p>
     </div>
   </div>
   <p class="w3-large w3-center w3-padding-16">To Explore our Data and Models, Visit our Repository:</p>
-  
+
   <a href="https://github.com/monagoli/cc_project3"><p class="w3-wide w3-center"><i class="fab fa-github"></i>Github</p></a>
   <!-- <div class="w3-light-grey">
     <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:100%"></div>
@@ -333,7 +394,7 @@ body, html {
   </div>
   <div class="w3-quarter w3-section"><br>
     <span class="w3-xlarge"><img src="https://geteverything.org/wp-content/uploads/2013/08/13.png" alt=""height="20%" width="20%"></span><br>
-    HTML/CSS 
+    HTML/CSS
   </div>
 </div>
 
@@ -352,15 +413,22 @@ body, html {
   <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
   <div class="w3-row-padding w3-center">
     <div class="w3-col m4">
-      <img src="https://github.com/monagoli" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Mona">
-      <br>
-      <p>Here is a sentence about Mona</p>
+      
+      <a href="https://github.com/monagoli"><img src="https://media.licdn.com/dms/image/C5603AQEAN1767vEV8g/profile-displayphoto-shrink_800_800/0?e=1530414000&v=beta&t=EINIYJsL1y3bU68sI3DQ4d9bmhWi6Ljy7RoNE334DVE"
+        style="width:50% height:50%" onclick="onClick(this)" class="w3-hover-opacity image-cropper" alt="Mona">
+      </a>
+        <br>
+        <h5>Mona</h5>
+      <p>Data Analyst with Economics background, Social Media Expert</p>
     </div>
 
     <div class="w3-col m4">
-      <img src="https://github.com/santosozoemena" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Santos">
-      <br>
-      <p>Here is a sentence about Santos</p>
+      <a href="https://github.com/santosozoemena"><img src="https://media.licdn.com/dms/image/C5603AQH3ZFdkltuHBQ/profile-displayphoto-shrink_800_800/0?e=1530748800&v=beta&t=WuhWtQbnYA6X1U5FO-yLbGdsVYETG9qxewOC90ZKAgA"
+        style="width:50% height:50%" onclick="onClick(this)" class="w3-hover-opacity image-cropper" alt="Santos">
+      </a>
+        <br>
+        <h5>Santos</h5>
+      <p>Recent graduate with a passion and skill for Data Science</p>
     </div>
 
     <div class="w3-col m4 ">
@@ -368,7 +436,8 @@ body, html {
         style="width:50% height:50%" onclick="onClick(this)" class="w3-hover-opacity image-cropper" alt="Mindy">
         </a>
       <br>
-      <p>Here is a sentence about Mindy</p>
+      <h5>Mindy</h5>
+      <p>Experienced Business Analyst with Operations and E-Commerce background</p>
     </div>
 
     <!-- <button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">LOAD MORE</button> -->
@@ -399,7 +468,7 @@ body, html {
   </div>
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p> -->
 </footer>
- 
+
 <!-- Add Google Maps -->
 <script>
 function myMap()
