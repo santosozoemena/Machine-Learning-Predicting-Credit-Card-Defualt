@@ -116,7 +116,7 @@ body, html {
             </div>
           </div>
           <hr>
-          <div class="w3-row-padding" style=""margin:8px"">
+          <div class="w3-row-padding" style="margin:8px">
               <div class="w3-half">
                 <h5>Education Level</h5>
                 <input class="w3-input w3-border" type="radio" name="education" value="3"> High School<br>
@@ -132,7 +132,7 @@ body, html {
                 </div>
             </div>
             <hr>
-          <div class="w3-row-padding" style=""margin:8px"">
+          <div class="w3-row-padding" style="margin:8px">
             <div class="w3-half">
               <h5>Billing History in the Last 6 Months</h5>
               <input class="w3-input w3-border" type="radio"  required name="credit_score" value= '-2'>I do not carry a balance
@@ -148,7 +148,7 @@ body, html {
             </div>
           </div>
           <hr>
-          <div class="w3-row-padding" style=""margin:8px"">
+          <div class="w3-row-padding" style="margin:8px">
               <div class="w3-half">
                 <h5>Last Month Credit Bill </h5>
                 <input class="w3-input w3-border" type="number" placeholder="(exclude $)" required name="Credit Bill">
@@ -167,8 +167,8 @@ body, html {
       </div>
       <hr>
       <h3 class="w3-padding-large w3-xlarge  w3-animate-opacity w3-center">APPLICANT RESULTS</h3>
-      <div class=" card w3-row-padding w3-center" "margin:8px">
-        <div class="w3-col m6 w3-center">
+      <div class=" card w3-row-padding w3-center" style="margin:8px">
+        <div class="w3-col m12 w3-center"style="margin:8px">
         {% if prediction == 1 %}
       <h5>{{ 'Applicant is Predicted to Default' }}</h5>
       {% elif prediction == 0 %}
@@ -176,10 +176,7 @@ body, html {
       {% else %}
     </div>
       {% endif %}
-      <div class="w3-col m6 w3-center">
-      
-      <h5>{{ probability }}</h5>
-    </div>
+      <h5>{{'%0.2f'| format(probability*100|float)}}% probability to default</h5>
       </div>
       </div>
     </div>
