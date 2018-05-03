@@ -28,11 +28,12 @@ Base.metadata.drop_all(engine)
 #first route to homepage
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', prediction=None, probability=None)
 
 #second route does the predictions and creates table
 @app.route('/predict', methods=['POST'])
 def predict(prediction=None):
+    Base.metadata.drop_all(engine)
     class CreditDefault(Base):
         __tablename__ = "credit_default"
         __table_args__ = {'extend_existing': True}
@@ -83,10 +84,12 @@ def predict(prediction=None):
     # add and commit
     prediction = int(prediction[0])
     probability = float(probability[0][1])
-    prob = CreditDefault(prob=probability)
-    default = CreditDefault(default=prediction)
-    session.add(default)
-    session.add(prob)
+    # prob = CreditDefault(prob=probability)
+    # default = CreditDefault(default=prediction)
+    entry = CreditDefault(default=prediction,prob=probability)
+    session.add(entry)
+    # session.add(default)
+    # session.add(prob)
 
     session.commit()
     # print(probability)
@@ -94,7 +97,9 @@ def predict(prediction=None):
 
     # Now query the database to retrieve the prediction and render the data into the index2.html
     prediction = engine.execute('SELECT * FROM credit_default LIMIT 5').fetchall()[0][1]
-    probability = engine.execute('SELECT * FROM credit_default LIMIT 5').fetchall()[1][2]
+    # probability = engine.execute('SELECT * FROM credit_default LIMIT 5').fetchall()[1][2]
+    probability = engine.execute('SELECT * FROM credit_default LIMIT 5').fetchall()[0][2]
+
 
     # print(probability)
     # print(prediction)
