@@ -168,20 +168,35 @@ body, html {
       <hr>
       <h3 class="w3-padding-large w3-xlarge  w3-animate-opacity w3-center">APPLICANT RESULTS</h3>
       <div class=" card w3-row-padding w3-center" style="margin:8px">
-        <div class="w3-col m12 w3-center"style="margin:8px">
+       
+        <!-- <div class="w3-col m12 w3-center"style="margin:8px">
         {% if prediction == 1 %}
       <h5>{{ 'Applicant is Predicted to Default' }}</h5>
       {% elif prediction == 0 %}
       <h5>{{ "Applicant is Not Predicted to Default" }}</h5>
       {% else %}
     </div>
+    {% endif %} -->
+
+    <div class="w3-col m12 w3-center"style="margin:8px">
+        {% if (probability*100|float) >= 0  %}
+      <h5>{{ 'Low Risk of Default' }}</h5>
+      {% elif (probability*100|float) > 60 %}
+      <h5>{{ "High Risk of Default" }}</h5>
+      <!-- {% elif probability*100>40 %} -->
+      {% else %}
+      <h5>{{ "Moderate Risk of Default" }}</h5>
       {% endif %}
+    </div>
+
+
+      
       <h5>{{'%0.2f'| format(probability*100|float)}}% probability to default</h5>
       </div>
       </div>
     </div>
   </div>
-
+<!-- ADD IN LEGEND FOR -->
 <!-- Third Parallax Image with Portfolio Text -->
 <div class="bgimg-3 w3-display-container w3-opacity-min"id="about">
     <div class="w3-display-middle">
@@ -201,9 +216,11 @@ body, html {
       <div class="w3-col m12 w3-left w3-padding-large">
         <h5><b><i class="	fa fa-bar-chart w3-margin-right "></i>Data Explotation</b></h5><br>
         <p>
-          The dataset comes from UC Irvine Machine Learning datasets. All monitary amounts are expressed in New Taiwan Dollars in 2005. We accepted this to be relevant for our model because 22% of accounts in the dataset show atleast a 30 day default
-           and in 2009 "nearly 26 percent of Americans admit they do not pay their (credit card) bills on time, including people who sometimes miss a payment altogether". Default ratio is consistent regardless of location.
-           <br>
+          The dataset comes from UC Irvine Machine Learning datasets. All monetary amounts are expressed in New Taiwan Dollars in 2005. We accepted this to be relevant for our model because 22% of accounts in the dataset show at least a 30 day default
+           . According to the National Foundation for Credit Counseling "nearly 26 percent of Americans admit they do not pay their (credit card) bills on time, including people who sometimes miss a payment altogether(2009)." 
+           Default ratio is not dependent on geographical location.
+           
+           <br><br>
            Dataset contains 25 fields, including ID. All fields have been explained below.
         </p>
         <hr>
@@ -275,7 +292,7 @@ body, html {
     <div class="w3-row">
       <div class="w3-col m12 w3-left w3-padding-large">
         <h5><b><i class="	fa fa-bar-chart w3-margin-right"></i>Feature Engineering</b></h5><br>
-        <p>To properly utilize this dataset, we had to create time-independent variables from the fields that are measured over times.
+        <p>To properly utilize this dataset, we had to create time-independent variables from the fields that are measured over time.
           This would allow us to gather a user input from our application and apply that to our model. Here are the aggregations and
           changes that we made to the dataset before modeling:
           </p>
@@ -283,10 +300,11 @@ body, html {
           <ul>
             <li> Removed ID</li>
             <li>Created Pay ‘Score’ Average (pay_score_avg), calculated the mean of individual accounts 6 month pay ‘score’</li>
-            <li>Created Average Payment Amount (pay_amt_avg)and Average Bill Amount(bill_amt_avg) using the same methodology</li>
+            <li>Created Average Payment Amount (pay_amt_avg), calculated the mean of individual accounts 6 month payment amount</li>
+            <li>Created Average Bill Amount(bill_amt_avg), calculated the mean of individual accounts 6 month bill amount</li>
             <li>Created Credit Utilization, calculated by (bill_amt0/limit_bal)</li>
             <li>Created Payment to Bill Percentage, calculated by (avg_pay_amt/avg_bill_amt)</li>
-            <li>Adjusted all monitary amounts to 2018 USD</li>
+            <li>Adjusted all monetary amounts to 2018 USD</li>
           </ul>
           <br>
           <p>Using the created features we visualized trends by Sex, Age, Marital Status and Education. We have included Age and Sex below.</p>
@@ -308,12 +326,12 @@ body, html {
           <p><br>Random Forest Feature Importance<br></p>
         <img src="../static/images/feat.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="featureImportance" width="500" height="333">
         </div>
-      <div>
+      <!-- <div>
         <p><br>Assessing the Random Forest Model<br></p>
-      <img src="../static/images/precision.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="precision" width="500" height="333">
-      <br><br>
-      <img src="../static/images/confusion.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="confusion" width="500" height="333">
-      </div>
+      <img src="../static/images/precision.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="precision" width="500" height="333"> -->
+      <!-- <br><br>
+      <img src="../static/images/confusion.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="confusion" width="500" height="333"> -->
+      <!-- </div> -->
     </div>
 
     <!-- Hide this text on small devices -->
@@ -325,16 +343,20 @@ body, html {
        To the left you can
        view the efficacy of the models using the Receiver Operating Characteristic (ROC) Curve of
        each model.
-       <br><br> We are using the Random Forest model because it produced the best F1 Score. Random Forest models can provide insight into the feature importance and the decision flow of determining a user’s future
-       default status, but the downside is that Random Forest and Decisions Trees can ‘over-fit’ the
+       <br><br> We are using the Random Forest model because it produced the highest F1 Score(0.78). Random Forest 
+       models can provide insight into the feature importance and the decision flow of determining a user’s future
+       default status. The downside is that Random Forest and Decisions Trees can ‘over-fit’ the
        models, meaning the model cannot generalize, resulting in a model that isn’t receptive to new
-       data. The ROC Graph shows that model is not overfit but is producing the most accurate results. 
-       <br><br>Logistic Regression model can easily produce a probability of an applicant to default. Classifying with a probability is the most valuable output for this problem
-       as the application is ideally combined with human logic to advise a user’s next steps, but the Random Forest produces a higher F1 score.
+       data. The ROC Graph shows that this model is not overfit but is producing the most accurate results. 
+       <br><br>
+       <!-- Logistic Regression model can easily produce a probability of an applicant to default. 
+       Classifying with a probability is the most valuable output for this problem
+       as the application is ideally combined with human logic to advise a user’s next steps, 
+       but the Random Forest produces a higher F1 score.
        <br><br>
        Neural Networks can often provide extremely accurate predictions, but the limitation to using neural
        networks in a problem such as this, is the lack of visibility to the prediction logic and process. It
-       is a ‘black box’ that is not easily translated to replicable process. In this case it did not out perform the other model types.
+       is a ‘black box’ that is not easily translated to replicable process. In this case it did not out perform the other model types. -->
        </p>
     </div>
   </div>
